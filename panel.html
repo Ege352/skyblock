@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Hoş Geldin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    #panel {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .admin {
+      color: red;
+      font-weight: bold;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div id="panel">
+  <h2>Hoş geldin, <span id="kullaniciAdi"></span>!</h2>
+  <p id="rol"></p>
+  <button onclick="magazayaDon()">Mağazaya Dön</button>
+</div>
+
+<script>
+  const adminler = ["Egemn16", "alpsadece"];
+  const kayitli = JSON.parse(localStorage.getItem("kayitliKullanici"));
+
+  if (!kayitli) {
+    window.location.href = "kayit.html";
+  } else {
+    const username = kayitli.username;
+    document.getElementById("kullaniciAdi").innerText = username;
+
+    if (adminler.includes(username)) {
+      document.getElementById("rol").innerHTML = "<span class='admin'>Yönetici</span>";
+    } else {
+      document.getElementById("rol").innerText = "Oyuncu";
+    }
+  }
+
+  function magazayaDon() {
+    window.location.href = "magaza.html"; // Bu sayfayı sen oluşturmalısın.
+  }
+</script>
+
+</body>
+</html>
